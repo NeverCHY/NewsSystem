@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "UserManagement";
+}
+
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black">新闻管理系统</div>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">主菜单</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript: location.href='/News/Index';">首页</a></dd>
+                        <dd><a href="javascript: location.href='/News/AddNews';">发布新闻</a></dd>
+                        <dd><a href="javascript: location.href='/News/UserManagement';">用户管理</a></dd>
+                        <dd><a href="">退出系统</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">menu group 2</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">list 1</a></dd>
+                        <dd><a href="javascript:;">list 2</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;">click menu item</a></li>
+                <li class="layui-nav-item"><a href="">the links</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            用户列表
+            <br><br>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>ID号码</th>
+                        <th>用户名</th>
+                        <th>注册日期</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (NewsSystem.Models.News member in Model)
+                    {
+                        <tr>
+                            <td>@member.Id </td>
+                            <td>@member.MemberName</td>
+                            <td>@member.InsertDate</td>
+
+                            <td>@Html.ActionLink("删除", "DeleteMember", new { id = member.Id }, new { onclick = "return confirm('是否确认删除')" })</td>
+                            <td>@Html.ActionLink("编辑", "EditMember", new { id = member.Id }, new { onclick = "return confirm('是否确认编辑')" })</td>
+                        </tr>
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
